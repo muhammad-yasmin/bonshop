@@ -63,7 +63,7 @@ $data = mysqli_fetch_array($query);
 					<div class="card border-success">
 						<div class="card-body">
 							<h4 class="card-title">Keranjang</h4>
-							<table class="table" border="0">
+							<table class="table table-responsive" border="0">
 								<tbody>
                                 <?php
                                     $no = 1;

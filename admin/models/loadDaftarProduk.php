@@ -1,4 +1,4 @@
-<table class="table table-striped" style="width:100%" id="tbl_produk">
+<table class="table table-striped table-responsive" style="width:100%" id="tbl_produk">
     <thead>
         <tr>
             <th>#</th>
