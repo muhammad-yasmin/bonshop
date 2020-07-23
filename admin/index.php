@@ -56,7 +56,7 @@
 				<li class="dropdown notification-list list-inline-item">
 					<div class="dropdown notification-list nav-pro-img">
 						<a class="dropdown-toggle nav-link arrow-none nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-							<i class="fas fa-cog"></i>
+							<?php echo ucwords($_SESSION['nama']); ?> <i class="fas fa-cog"></i>
 						</a>
 						<div class="dropdown-menu dropdown-menu-right profile-dropdown ">
 							<!-- item-->

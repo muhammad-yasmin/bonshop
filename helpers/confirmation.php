@@ -56,6 +56,15 @@ $data = mysqli_fetch_array($query);
 			</div>
         </nav>
         <div class="container mt-3 animated slideInDown">
+			<div class="card text-center border-success mb-2">
+				<div class="card-body">
+					<h4 class="card-title">Harap Transfer ke <b>salah satu</b> nomor rekening di bawah!</h4>
+					<p class="card-text">
+						<b>Mandiri</b> : <b>144.12.312.333 </b>a/n M Yasmin N<br>
+						<b>BCA</b> : <b>144.12.312.333 </b>a/n M Yasmin N<br>
+					</p>
+				</div>
+			</div>
             <div class="card border-success">
                 <div class="card-body">
                     <h4 class="card-title">Konfirmasi Order</h4>
