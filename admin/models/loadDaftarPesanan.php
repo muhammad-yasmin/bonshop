@@ -1,7 +1,8 @@
-<table class="table table-striped table-responsive" style="width:100%" id="tbl_order">
+<table class="table table-striped" style="width:100%" id="tbl_order">
     <thead>
         <tr>
             <th>#</th>
+            <th>ID Pesanan</th>
             <th>Produk</th>
             <th>Jumlah</th>
             <th>Tanggal</th>
@@ -26,6 +27,7 @@
                 ?>
                     <tr>
                         <td><?= $no++; ?></td>
+                        <td>ORDER<?= $data['ID_order'];?></td>
                         <td><?= $data['nama_produk']; ?></td>
                         <td><?= $data['jumlah_produk']; ?> pc(s)</td>
                         <td><?= $data['tgl_masuk']; ?></td>
