@@ -17,13 +17,13 @@ if($tot == 1){
         </script>
     <?php
 } else {
-    // $query_user = mysqli_query($db, "SELECT * FROM user WHERE username = '".$uName."' && password = '".$pass."'");
-    // $ekstrak = mysqli_fetch_array($query_user);
-    // $_SESSION['id'] = $ekstrak['ID_user'];
+    $query_user = mysqli_query($db, "SELECT * FROM user WHERE username = '".$uName."' AND password = '".$pass."'");
+    $ekstrak = mysqli_fetch_array($query_user);
+    $_SESSION['id_user'] = $ekstrak['ID_user'];
     ?>
         <script type="text/javascript">
-            window.location.href = "../sign/";
-            alert("Maaf, username atau password yang anda inputkan tidak sama dengan sistem");
+            window.location.href = "../user/";
+            alert("Selamat Datang di aplikasi");
         </script>
     <?php
 }

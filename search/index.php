@@ -1,3 +1,10 @@
+<?php
+	if(!isset($_SESSION)){
+		session_start();
+	} else {
+		//do nothing
+	}
+?>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
@@ -13,7 +20,7 @@
 	<body>
 		<nav class="navbar navbar-expand-md navbar-light" style="background-color: #fff;">
 			<div class="container">
-				<a class="navbar-brand text-success" href="../">Bonshop</a>
+				<a class="navbar-brand text-success" href="../user/">Bonshop</a>
 				<button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
 					aria-expanded="false" aria-label="Toggle navigation"></button>
 				<div class="collapse navbar-collapse" id="collapsibleNavId">
@@ -31,21 +38,27 @@
 					</ul>
 					<ul class="navbar-nav ml-auto mt-1 mt-lg-0">
 						<li class="nav-item">
-							<a class="nav-link text-success" href="../shoppingcart/">Keranjang <i class="fas fa-shopping-cart"></i></a>
+							<a class="nav-link text-success" href="../helpers/confirmation.php">Konfirmasi Order <i class="fas fa-check"></i></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link text-success" href="../chat/">Chat <i class="fas fa-comments"></i></a>
+							<a class="nav-link text-success" href="../shoppingcart/"><i class="fas fa-shopping-cart"></i></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link text-success" href="../sign/">Masuk atau Daftar <i class="fas fa-sign-in-alt"></i></a>
+							<a class="nav-link text-success" href="../chat/"><i class="fas fa-comments"></i></a>
 						</li>
-						<!-- <li class="nav-item dropdown">
-							<a class="nav-link text-success dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i></a>
-							<div class="dropdown-menu" aria-labelledby="dropdownId">
-								<a class="dropdown-item text-success" href="#">Pengaturan</a>
-								<a class="dropdown-item text-success" href="#">Keluar</a>
-							</div>
-						</li> -->
+						<?php
+							if(isset($_SESSION['id_user'])){
+								?>
+								<li class="nav-item dropdown">
+									<a class="nav-link text-success dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i></a>
+									<div class="dropdown-menu" aria-labelledby="dropdownId">
+										<a class="dropdown-item text-primary" href="#">Profil</a>
+										<a class="dropdown-item text-primary" href="../user/logout.php">Keluar</a>
+									</div>
+								</li>
+								<?php
+							}
+						?>
 					</ul>
 				</div>
 			</div>

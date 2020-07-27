@@ -5,11 +5,15 @@ $id_user = $_POST['ID_user'];
 $id_prod = $_POST['ID_prod'];
 $qty = $_POST['qty'];
 $al = $_POST['alamat'];
-$as = $_POST['as'];
 $tot_bayar = $_POST['totBayar'];
 $tgl = date("Y-m-d");
 
-$query = mysqli_query($db, "INSERT INTO pemesanan VALUES(DEFAULT,
+$query_SELECT_ORDER = mysqli_query($db, "SELECT COUNT(ID_order) as urutan FROM pemesanan");
+$getTotalORDER = mysqli_fetch_array($query_SELECT_ORDER);
+$next_order = $getTotalORDER['urutan']+1;
+
+
+$query = mysqli_query($db, "INSERT INTO pemesanan VALUES($next_order,
                             $id_prod,
                             $id_user,
                             $qty,
@@ -29,10 +33,11 @@ $sql_update = "UPDATE data_produk
 $exec_update_stok = mysqli_query($db, $sql_update);
 
 if($query && $exec_update_stok){
+    
     ?>
         <script type="text/javascript">
-            alert("Berhasil order");
-            window.location.href = '../';
+            alert("Berhasil melakukan pemesanan, harap segera melakukan pembayaran dan konfirmasi");
+            window.location.href = '../user/';
         </script>
     <?php
 } else {

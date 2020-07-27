@@ -1,4 +1,9 @@
 <?php
+if(!isset($_SESSION)){
+	session_start();
+} else {
+	//do nothing
+}
 include '../core/database.php';
 date_default_timezone_set("Asia/Jakarta");
 $query = mysqli_query($db,"SELECT produk.*, data_produk.* 
@@ -21,7 +26,7 @@ $data = mysqli_fetch_array($query);
     <body>
         <nav class="navbar navbar-expand-md navbar-light" style="background-color: #fff;">
 			<div class="container">
-				<a class="navbar-brand text-success" href="../">Bonshop</a>
+				<a class="navbar-brand text-success" href="../user/">Bonshop</a>
 				<button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
 					aria-expanded="false" aria-label="Toggle navigation"></button>
 				<div class="collapse navbar-collapse" id="collapsibleNavId">
@@ -41,16 +46,19 @@ $data = mysqli_fetch_array($query);
 						<li class="nav-item">
 							<a class="nav-link text-success" href="../chat/"><i class="fas fa-comments"></i></a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link text-success" href="sign/">Masuk atau Daftar <i class="fas fa-sign-in-alt"></i></a>
-						</li>
-						<!-- <li class="nav-item dropdown">
-							<a class="nav-link text-success dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profil</a>
-							<div class="dropdown-menu" aria-labelledby="dropdownId">
-								<a class="dropdown-item text-success" href="#">Pengaturan</a>
-								<a class="dropdown-item text-success" href="#">Keluar</a>
-							</div>
-						</li> -->
+						<?php
+							if(isset($_SESSION['id_user'])){
+								?>
+								<li class="nav-item dropdown">
+									<a class="nav-link text-success dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i></a>
+									<div class="dropdown-menu" aria-labelledby="dropdownId">
+										<a class="dropdown-item text-secondary" href="#">Profil</a>
+										<a class="dropdown-item text-secondary" href="../user/logout.php">Keluar</a>
+									</div>
+								</li>
+								<?php
+							}
+						?>
 					</ul>
 				</div>
 			</div>
