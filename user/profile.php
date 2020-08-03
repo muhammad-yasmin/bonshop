@@ -40,7 +40,7 @@
 				<div class="collapse navbar-collapse" id="collapsibleNavId">
 					<ul class="navbar-nav mr-auto mt-1 mt-lg-0">
 						<form class="form-inline my-5 my-lg-0" method="POST">
-							<input class="form-control mr-sm-2" type="text" name="q" placeholder="Cari produk">
+							<input class="form-control form-control-sm mr-sm-2" type="text" name="q" placeholder="Cari produk">
 							<button class="btn btn-outline-success btn-sm my-2 my-sm-0" type="submit" name="btnSearch">Cari <i class="fas fa-search"></i></button>
 						</form>
 						<?php
@@ -119,7 +119,8 @@
 						<div class="card border-danger mt-4">
 							<div class="card-body">
 								<h5 class="card-title mb-2"><b>Hapus akun?</b></h5>
-								<p class="card-text mb-2"><?= $ext_select_user['alamat']; ?></p>
+								<p class="card-text mb-2">Menghapus akun akan menghilangkan data akun anda pada sistem ini.</p>
+								<button class="btn btn-block btn-danger">Hapus Akun</button>
 							</div>
 						</div>
 					</div>

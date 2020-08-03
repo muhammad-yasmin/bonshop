@@ -4,6 +4,16 @@
 	} else {
 		//do nothing
 	}
+	include '../core/database.php';
+
+	if(isset($_SESSION['id_user'])){
+		$q_select_user = mysqli_query($db, "SELECT user.*, data_user.* 
+											FROM user
+											INNER JOIN data_user
+											ON user.ID_user = data_user.ID_data_user
+											WHERE user.ID_user =".$_SESSION['id_user']);
+		$ext_select_user = mysqli_fetch_array($q_select_user);
+	}
 ?>
 <html lang="en">
 	<head>
@@ -26,8 +36,8 @@
 				<div class="collapse navbar-collapse" id="collapsibleNavId">
 					<ul class="navbar-nav mr-auto mt-1 mt-lg-0">
 						<form class="form-inline my-5 my-lg-0" method="POST">
-							<input class="form-control mr-sm-2" type="text" name="q" placeholder="Cari produk">
-							<button class="btn btn-outline-success btn-sm my-2 my-sm-0" type="submit" name="btnSearch">Cari <i class="fas fa-search"></i></button>
+							<input class="form-control form-control-sm mr-sm-2" type="text" name="q" placeholder="Cari produk">
+							<button class="btn btn-sm btn-outline-success btn-sm my-2 my-sm-0" type="submit" name="btnSearch">Cari <i class="fas fa-search"></i></button>
 						</form>
 						<?php
 							if(isset($_POST['q'])){
@@ -52,8 +62,9 @@
 								<li class="nav-item dropdown">
 									<a class="nav-link text-success dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i></a>
 									<div class="dropdown-menu" aria-labelledby="dropdownId">
-										<a class="dropdown-item text-primary" href="#">Profil</a>
-										<a class="dropdown-item text-primary" href="../user/logout.php">Keluar</a>
+										<a class="dropdown-item text-secondary" href="../user/profile.php"><?= $ext_select_user['nama_depan']." ".$ext_select_user['nama_belakang']; ?></a>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item text-secondary" href="../user/logout.php">Keluar</a>
 									</div>
 								</li>
 								<?php

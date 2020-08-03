@@ -39,7 +39,7 @@
 				<div class="collapse navbar-collapse" id="collapsibleNavId">
 					<ul class="navbar-nav mr-auto mt-1 mt-lg-0">
 						<form class="form-inline my-5 my-lg-0" method="POST">
-							<input class="form-control mr-sm-2" type="text" name="q" placeholder="Cari produk">
+							<input class="form-control form-control-sm mr-sm-2" type="text" name="q" placeholder="Cari produk">
 							<button class="btn btn-outline-success btn-sm my-2 my-sm-0" type="submit" name="btnSearch">Cari <i class="fas fa-search"></i></button>
 						</form>
 						<?php
