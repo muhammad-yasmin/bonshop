@@ -32,7 +32,7 @@
 
     function edit_user(id){
         $.ajax({
-            url: 'models/loadEditUser.php',
+            url: 'models/loadEditFormUser.php',
             method: 'post',
             data: {
                 id: id
@@ -49,25 +49,25 @@
 
     function del_user(id){
         var konf = confirm("apakah anda yakin");
-        alert(konf);
-        // if(konf == true){
-        //     $.ajax({
-        //         url: 'models/deleteProduk.php',
-        //         method: 'post',
-        //         data: {
-        //             id: id
-        //         },
-        //         success: function(data){
-        //             alert(data);
-        //             loadDaftarProduk();
-        //         },
-        //         error: function(xhr){
-        //             alert("gagal");
-        //         }
-        //     })
-        // } else {
-        //     alert("Penghapusan data dibatalkan");
-        // }
+        // alert(konf);
+        if(konf == true){
+            $.ajax({
+                url: 'models/deleteUser.php',
+                method: 'post',
+                data: {
+                    id: id
+                },
+                success: function(data){
+                    alert(data);
+                    loadDaftarUser();
+                },
+                error: function(xhr){
+                    alert("gagal");
+                }
+            })
+        } else {
+            alert("Penghapusan data dibatalkan");
+        }
     }
     function addNewUser(){
         $("#cardUser").hide('slow', function(){
