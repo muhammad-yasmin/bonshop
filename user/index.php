@@ -67,6 +67,13 @@
 			</div>
 		</nav>
 		
+		<div class="alert alert-warning alert-dismissible fade show" role="alert" style="display:none;">
+		  	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<strong><p id="teks-alert"></p></strong> 
+		</div>
+		
 		<div id="carouselId" class="carousel slide" data-ride="carousel">
 			<ol class="carousel-indicators">
 				<li data-target="#carouselId" data-slide-to="0" class="active"></li>
@@ -182,6 +189,23 @@
 					items:4
 				}
 			}
-		})
+		});
+		function addCart(id){
+			//alert("js index.php");
+			$.ajax({
+				url : '../helpers/addCart.php',
+				data: {
+					id: id
+				},
+				type: 'post',
+				success: function(data){
+					alert(data);
+				},
+				error: function(xhr){
+					// $(".alert").alert();
+					alert(data);
+				}
+			});
+		}
 	</script>
 </html>

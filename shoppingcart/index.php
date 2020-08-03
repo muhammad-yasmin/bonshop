@@ -1,3 +1,10 @@
+<?php
+if(!isset($_SESSION)){
+	session_start();
+} else {
+	//hello from the other side
+}
+?>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
@@ -7,11 +14,13 @@
 		<link rel="stylesheet" href="../node_modules/owl.carousel/dist/assets/owl.carousel.min.css">
 		<link rel="stylesheet" href="../node_modules/animate.css/animate.min.css">
 		<link rel="stylesheet" href="../dist/style.css">
+		<link rel="stylesheet" href="../dist/css/all.min.css">
+		<link rel="stylesheet" href="../dist/css/fontawesome.min.css">
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-md navbar-light" style="background-color: #fff;">
 			<div class="container">
-				<a class="navbar-brand text-success" href="../">Bonshop</a>
+				<a class="navbar-brand text-success" href="../user/">Bonshop</a>
 				<button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
 					aria-expanded="false" aria-label="Toggle navigation"></button>
 				<div class="collapse navbar-collapse" id="collapsibleNavId">
@@ -22,22 +31,28 @@
 						</form>
 					</ul>
 					<ul class="navbar-nav ml-auto mt-1 mt-lg-0">
-						<li class="nav-item active">
-							<a class="nav-link text-success" href="#">Keranjang<span class="sr-only">(current)</span></a>
+					<li class="nav-item">
+							<a class="nav-link text-success" href="../helpers/confirmation.php">Konfirmasi Order <i class="fas fa-check"></i></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link text-success" href="../chat/">Chat</a>
+							<a class="nav-link text-success" href="../shoppingcart/"><i class="fas fa-shopping-cart"></i></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link text-success" href="sign/">Masuk atau Daftar <i class="fas fa-sign-in-alt"></i></a>
+							<a class="nav-link text-success" href="../chat/"><i class="fas fa-comments"></i></a>
 						</li>
-						<!-- <li class="nav-item dropdown">
-							<a class="nav-link text-success dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profil</a>
-							<div class="dropdown-menu" aria-labelledby="dropdownId">
-								<a class="dropdown-item text-success" href="#">Pengaturan</a>
-								<a class="dropdown-item text-success" href="#">Keluar</a>
-							</div>
-						</li> -->
+						<?php
+							if(isset($_SESSION['id_user'])){
+								?>
+								<li class="nav-item dropdown">
+									<a class="nav-link text-success dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i></a>
+									<div class="dropdown-menu" aria-labelledby="dropdownId">
+										<a class="dropdown-item text-primary" href="#">Profil</a>
+										<a class="dropdown-item text-primary" href="../user/logout.php">Keluar</a>
+									</div>
+								</li>
+								<?php
+							}
+						?>
 					</ul>
 				</div>
 			</div>
@@ -48,23 +63,31 @@
 					<div class="card border-success">
 						<div class="card-body">
 							<h4 class="card-title">Keranjang</h4>
-							<table class="table" border="1">
+							<table class="table" border="0">
 								<tbody>
-									<tr>
-										<td width="5%">1.</td>
-										<td width="55%">Lorem</td>
-										<td width="20%">
-											<input type="number" value="1" min="1" max="12" name="" id="" >
-										</td>
-										<td width="20%">Rp. 455.000,00</td>
-									</tr>
+									<?php
+										if(isset($_SESSION['keranjang'])){
+											$no = 1;
+											foreach($_SESSION['keranjang'] as $listCart){
+												?>
+												<tr>
+													<td width="5%"><?= $no++; ?></td>
+													<td width="45%"><?= $listCart['nama_produk']; ?></td>
+													<td width="20%">
+														<input type="number" value="<?= $listCart['qty'] ?>" min="1" max="12" name="" id="" >
+													</td>
+													<td width="20%">Rp. <?= $listCart['harga']; ?></td>
+													<td width="10%"><i class="fas fa-trash"></i></td>
+												</tr>
+												<?php
+											}
+										} else {
+											echo "Keranjang anda masih kosong!";
+										}
+									?>
 									<tr>
 										<td align="right" colspan="3"><h5>Subtotal :</h5></td>
 										<td align=""><h5>Rp. 1230</h4></td>
-									</tr>
-									<tr>
-										<td align="right" colspan="3">Diskon :</td>
-										<td align="">Rp. 0</td>
 									</tr>
 									<tr>
 										<td align="right" colspan="3">Total :</td>

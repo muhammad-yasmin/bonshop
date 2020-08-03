@@ -18,7 +18,8 @@
                             <img src="../assets/img/produk/<?= $ext['url_foto']; ?>" class="rounded img-fluid" alt="">
                             <h5 class="card-title"><b><?= $ext['nama_produk']; ?></b></h5>
                             <p class="card-text">Rp. <?= $ext['harga']; ?></p>
-                            <a class="btn btn-block btn-success mt-3 text-white" href="../checkout/?p=<?php echo base64_encode($ext['ID_produk']); ?>">Beli Sekarang</a>
+                            <a class="btn btn-sm btn-success mt-3 text-white" href="../checkout/?p=<?php echo base64_encode($ext['ID_produk']); ?>">Beli Sekarang</a>
+                            <button class="btn btn-md btn-outline-danger mt-3 col-md-4" onclick="addCart(<?= $ext['ID_produk'] ?>);"><i class="fas fa-cart-plus"></i></button>
                         </div>
                     </div>
                 </div>
