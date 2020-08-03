@@ -6,7 +6,7 @@ if(!isset($_SESSION)){
 }
 include '../core/database.php';
 $ID = base64_decode($_GET['p']);
-$query = mysqli_query($db,"SELECT produk.*, data_produk.* 
+$query = mysqli_query($db,"SELECT produk.*, data_produk.*
 						FROM produk
 						INNER JOIN data_produk
 						ON produk.ID_produk = data_produk.ID_data_produk
@@ -128,6 +128,10 @@ $data = mysqli_fetch_array($query);
 					<div class="card text-left" style="display:none;">
 						<div class="card-body">
 							<form id="formOrder" action="placeOrder.php" method="post">
+								<?php
+									$query_alamat = mysqli_query($db, "SELECT alamat FROM data_user WHERE ID_data_user =".$_SESSION['id_user']);
+									$extrac_alamat = mysqli_fetch_array($query_alamat);
+								?>
 								<div class="form-group">
 									<label for="">id user</label>
 									<input type="text" class="form-control" name="ID_user" value="<?= $_SESSION['id_user']; ?>">

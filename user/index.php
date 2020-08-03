@@ -1,8 +1,18 @@
 <?php
+	include "../core/database.php";
 	if(!isset($_SESSION)){
 		session_start();
 	} else {
 		//do nothing
+	}
+
+	if(isset($_SESSION['id_user'])){
+		$q_select_user = mysqli_query($db, "SELECT user.*, data_user.* 
+											FROM user
+											INNER JOIN data_user
+											ON user.ID_user = data_user.ID_data_user
+											WHERE user.ID_user =".$_SESSION['id_user']);
+		$ext_select_user = mysqli_fetch_array($q_select_user);
 	}
 ?>
 <html lang="en">
@@ -14,7 +24,7 @@
 		<link rel="stylesheet" href="../node_modules/owl.carousel/dist/assets/owl.carousel.min.css">
 		<link rel="stylesheet" href="../node_modules/owl.carousel/dist/assets/owl.theme.default.min.css">
 		<link rel="stylesheet" href="../node_modules/animate.css/animate.min.css">
-		<link href="../https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
 		<!-- <script src="../https://kit.fontawesome.com/38965a6618.js" crossorigin="anonymous"></script> -->
 		<link rel="stylesheet" href="../dist/css/style.css">
 		<link rel="stylesheet" href="../dist/css/all.min.css">
@@ -55,8 +65,9 @@
 								<li class="nav-item dropdown">
 									<a class="nav-link text-success dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i></a>
 									<div class="dropdown-menu" aria-labelledby="dropdownId">
-										<a class="dropdown-item text-primary" href="#">Profil</a>
-										<a class="dropdown-item text-primary" href="logout.php">Keluar</a>
+										<a class="dropdown-item text-secondary" href="profile.php"><?= $ext_select_user['nama_depan']." ".$ext_select_user['nama_belakang']; ?></a>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item text-secondary" href="logout.php">Keluar</a>
 									</div>
 								</li>
 								<?php
@@ -105,7 +116,7 @@
 		</div>
 		<div class="container">
 			<div id="section-dua" class="mt-5">
-				<h3 class="text-center">Produk Unggulan</h3>
+				<h3 class="text-center">Produk Terkini</h3>
 			</div>
 		</div>
 		<?php

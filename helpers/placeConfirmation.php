@@ -25,7 +25,7 @@ if($q_place_confirmation && $u_status_order){
         ?>
             <script type="text/javascript">
                 alert("Terima Kasih, Konfirmasi pembayaran anda akan kami proses!");
-                window.location.href = "../";
+                window.location.href = "../user/";
             </script>
         <?php
     }
